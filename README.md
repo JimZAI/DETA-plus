@@ -135,8 +135,8 @@ We thank authors of [Meta-Dataset](https://github.com/google-research/meta-datas
 ## Contact
 If you hava any questions, feel free to
 
-* Send an email to: jizhang.jim@gmail.com
-* New an issue at this repo.
+* Contact me at: jizhang.jim@gmail.com
+* New an issue in this repo.
 
 
 
