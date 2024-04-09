@@ -21,13 +21,8 @@ Recent advances in model pre-training give rise to task adaptation based few-sho
 </p>
 
 **Fig.2. An overview of the proposed Denoised Task Adaptation (DETA++) framework.** 
-**Firstly**, the images together with a set of randomly cropped local regions of
-support samples are fed into a pre-trained model fθ (w/ or w/o a model-specific adapter Aα) to extract image and region representations. 
-**Secondly**, a contrastive relevance aggregation (CoRA) module takes the region representations as input to determine the weight of each region, based on
-which we can compute the image weights and refine the clean regions in a memory bank. 
-**Thirdly**, an ID compactness loss LID and an OOD dispersion loss LOOD are devised in a weighted embedding space to improve the noise-robustness of the adapted model. 
-**Fourthly**, we employ a memory bank to store clean regions for each class, based on which an Intra-class Region Swapping (IntraSwap) strategy is developed to rectify the
-class prototypes of ID classes and a Local Nearest Centroid Classifier (LocalNCC) is proposed to yield noise-robust predictions on query samples.
+**Firstly**, the images together with a set of randomly cropped local regions of support samples are fed into a pre-trained model (w/ or w/o a model-specific adapter) to extract image and region representations. **Secondly**, a contrastive relevance aggregation (CoRA) module takes the region representations as input to determine the weight of each region, based on which we can compute the image weights and refine the clean regions in a memory bank. 
+**Thirdly**, an ID compactness loss LID and an OOD dispersion loss LOOD are devised in a weighted embedding space to improve the noise-robustness of the adapted model.  **Fourthly**, we employ a memory bank to store clean regions for each class, based on which an Intra-class Region Swapping (IntraSwap) strategy is developed to rectify the class prototypes of ID classes and a Local Nearest Centroid Classifier (LocalNCC) is proposed to yield noise-robust predictions on query samples.
 
 ## Contributions
 - We reveal that the overlooked ID and OOD noises in few-shot tasks negatively affect the task adaptation performance of existing FSL methods. To tackle this, we propose a first, unified, ID- and OOD-denoising
