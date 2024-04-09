@@ -11,7 +11,7 @@ Recent advances in model pre-training give rise to task adaptation based few-sho
   <img src="./figs/f1.png" style="width:50%">
 </p>
 
-**Fig.1 Two types of noises that can appear in both the support/training and query/test samples of open-world few-shot tasks.** 
+**Fig.1 Two types of noises that can appear in both the support and query samples of open-world few-shot tasks.** 
 - **ID Noises**: indistribution (ID) samples whose object features are obscured due to background clutter, image corruption, and etc.
 - **OOD Noises**: out-ofdistribution (OOD) samples, i.e., samples from unseen classes.
  
@@ -137,20 +137,11 @@ We thank authors of [Meta-Dataset](https://github.com/google-research/meta-datas
 
 
 ## Contact
-If you hava any questions, you can
+If you hava any questions, feel free to
 
 * contact me at: jizhang.jim@gmail.com
-* new an issue at: https://github.com/nobody-1617/DETA.
+* new an issue at this repo.
 
-To cite our paper, please use following BibTex:
-
-```
-@inproceedings{guo2021general,
-  title={DETA: Denoised Task Adaptation for Few-Shot Learning},
-  author={Zhang, Ji and Gao, Lianli and Luo, Xu and Shen, Heng Tao and Song, Jingkuan},
-  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
-  year={2023}}
-```
 
 
 
