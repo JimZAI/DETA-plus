@@ -1,5 +1,5 @@
 ## DETA++: Denoised Task Adaptation for Open-world Few-shot Learning
-- A preliminary version of this work has been published in ICCV 2023. Welcome to visit: [DETA: Denoised Task Adaptation for Few-shot Learning ](https://openaccess.thecvf.com/content/ICCV2023/html/Zhang_DETA_Denoised_Task_Adaptation_for_Few-Shot_Learning_ICCV_2023_paper.html)
+- A preliminary version of this work has been published in ICCV 2023 ([DETA](https://openaccess.thecvf.com/content/ICCV2023/html/Zhang_DETA_Denoised_Task_Adaptation_for_Few-Shot_Learning_ICCV_2023_paper.html)).
 - The paper is in the peer review stage, and it will be published after its acceptance.
 
 ## Abstract
