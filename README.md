@@ -46,7 +46,7 @@ a plugin to improve their performance.
 
 - **Label-denoising on OOD-polluted Meta-dataset**
 <p align="center">
-  <img src="./figs/t2.png" style="width:50%">
+  <img src="./figs/t2.png" style="width:65%">
 </p>
 
 - **State-of-the-art Comparison (Few-shot Classification)**
@@ -56,7 +56,7 @@ a plugin to improve their performance.
 
 - **State-of-the-art Comparison (Few-shot OOD Detection)**
 <p align="center">
-  <img src="./figs/t3.png" style="width:95%">
+  <img src="./figs/t4.png" style="width:95%">
 </p>
 
 ## Visualization
