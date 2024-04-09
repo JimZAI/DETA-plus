@@ -1,52 +1,68 @@
-# DETA++: Denoised Task Adaptation for Open-world Few-shot Learning
+## DETA++: Denoised Task Adaptation for Open-world Few-shot Learning
+**Note:** A preliminary version of this work has been published in ICCV 2023 [DETA: Denoised Task Adaptation for Few-shot Learning ](https://openaccess.thecvf.com/content/ICCV2023/html/Zhang_DETA_Denoised_Task_Adaptation_for_Few-Shot_Learning_ICCV_2023_paper.html)
+
 ## Abstract
-Recent advances in model pre-training give rise to task adaptation based few-shot learning (FSL), where the goal is to adapt a pre-trained task-agnostic model for capturing task-specific knowledge with a few-labeled support samples of the target task. Despite the promising results in the closed-world setting, advanced approaches may still fail in the open-world, owing to the inevitable in-distribution (ID) and out-of-distribution (OOD) noises from both support and query samples of the target task. With limited support
-samples available, i) the adverse effect of the dual noises can be severely amplified during task adaptation, and ii) the adapted model can produce unreliable predictions on query samples in the presence of the dual noises. In this work, we propose DEnoised Task
-Adaptation (DETA++) to tackle those challenges. On the one hand, DETA++ leverages a Contrastive Relevance Aggregation (CoRA) module to calculate the weights of images and local regions from support samples, based on which an ID compactness loss and an OOD dispersion loss are developed to achieve noise-robust task adaptation. On the other hand, DETA++ employs a memory bank to store and refine clean regions for each inner-task class, based on which a Local Nearest Centroid Classifier (LocalNCC) is devised to yield noise-robust predictions on query samples. Moreover, DETA++ utilizes an Intra-class Region Swapping (IntraSwap) strategy to rectify the class prototypes of ID classes during task adaptation, further improving the model’s robustness to the dual noises. Through extensive experiments, we prove the effectiveness and flexibility of DETA++, outperforming competitive baselines that specialize in either few-shot classification or OOD detection
+Recent advances in model pre-training give rise to task adaptation based few-shot learning (FSL), where the goal is to adapt a pre-trained task-agnostic model for capturing task-specific knowledge with a few-labeled support samples of the target task. Despite the promising results in the closed-world setting, advanced approaches may still fail in the open-world, owing to the inevitable in-distribution (ID) and out-of-distribution (OOD) noises from both support and query samples of the target task. With limited support samples available, i) the adverse effect of the dual noises can be severely amplified during task adaptation, and ii) the adapted model can produce unreliable predictions on query samples in the presence of the dual noises. In this work, we propose **DE**noised **T**ask **A**daptation (**DETA++**) to tackle those challenges. On the one hand, DETA++ leverages a Contrastive Relevance Aggregation (CoRA) module to calculate the weights of images and local regions from support samples, based on which an ID compactness loss and an OOD dispersion loss are developed to achieve noise-robust task adaptation. On the other hand, DETA++ employs a memory bank to store and refine clean regions for each inner-task class, based on which a Local Nearest Centroid Classifier (LocalNCC) is devised to yield noise-robust predictions on query samples. Moreover, DETA++ utilizes an Intra-class Region Swapping (IntraSwap) strategy to rectify the class prototypes of ID classes during task adaptation, further improving the model’s robustness to the dual noises. Through extensive experiments, we prove the effectiveness and flexibility of DETA++, outperforming competitive baselines that specialize in either few-shot classification or OOD detection.
+
+
+## Motivation
 
 <p align="center">
   <img src="./figs/f1.png" style="width:50%">
 </p>
+
+**Fig.1 Two types of noises that can appear in both the support/training and query/test samples of open-world few-shot tasks.** 
+- **ID Noises**: indistribution (ID) samples whose object features are obscured due to background clutter, image corruption, and etc.
+- **OOD Noises**: out-ofdistribution (OOD) samples, i.e., samples from unseen classes.
  
 ## Overview
-An overview of the proposed DETA (in a 2-way 3-shot exemple). During each iteration of task adaptation, the images together with a collection of cropped local regions of the support samples are first fed into a pre-trained model to extract image and region representations. Next, a Contrastive Relevance Aggregation(CoRA) module takes the region representations as input to determine the weight of each region, based on which we can calculate the image weights by a momentum accumulator. Finally, a local compactness loss and a global dispersion loss are devised in a weighted embedding space for noise-robust representation learning. At inference, we only retain the adapted model to produce image representations of support samples, on which we build a classifier guided by the refined image weights from the accumulator. 
 <p align="center">
   <img src="./figs/f2.png" style="width:100%">
 </p>
 
+**Fig.2. An overview of the proposed Denoised Task Adaptation (DETA++) framework.** 
+**Firstly**, the images together with a set of randomly cropped local regions of
+support samples are fed into a pre-trained model fθ (w/ or w/o a model-specific adapter Aα) to extract image and region representations. 
+**Secondly**, a contrastive relevance aggregation (CoRA) module takes the region representations as input to determine the weight of each region, based on
+which we can compute the image weights and refine the clean regions in a memory bank. 
+**Thirdly**, an ID compactness loss LID and an OOD dispersion loss LOOD are devised in a weighted embedding space to improve the noise-robustness of the adapted model. 
+**Fourthly**, we employ a memory bank to store clean regions for each class, based on which an Intra-class Region Swapping (IntraSwap) strategy is developed to rectify the
+class prototypes of ID classes and a Local Nearest Centroid Classifier (LocalNCC) is proposed to yield noise-robust predictions on query samples.
 
 ## Contributions
-- We propose DETA, a first, unified image- and label-denoising framework for FSL.
+- We reveal that the overlooked ID and OOD noises in few-shot tasks negatively affect the task adaptation performance of existing FSL methods. To tackle this, we propose a first, unified, ID- and OOD-denoising
+framework DETA++.
 
-- DETA can be flexibly plugged into different adapter-based and finetuning-based task adaptation paradigms.
+- The proposed DETA++ framework is orthogonal to task adaptation based few-shot classification and OOD detection approaches, therefore can be used as
+a plugin to improve their performance.
 
-- Extensive experiments on Meta-Dataset demonstrate the effectiveness and flexibility of DETA.
+- Extensive experiments demonstrate the strong performance and flexibility of DETA++, outperforming competitive baselines that specialize in either fewshot classification or OOD detection.
 
-## Strong Performance
-- Image-denoising on vanilla Meta-dataset
+## Strong Performance and Flexibility
+- **Image-denoising on vanilla Meta-dataset (w/o OOD noises)**
 <p align="center">
   <img src="./figs/t1.png" style="width:95%">
 </p>
 
-- Label-denoising on label-corrupted Meta-dataset
+- **Label-denoising on OOD-polluted Meta-dataset**
 <p align="center">
   <img src="./figs/t2.png" style="width:50%">
 </p>
 
-- State-of-the-art Comparison
+- **State-of-the-art Comparison (Few-shot Classification)**
+<p align="center">
+  <img src="./figs/t3.png" style="width:95%">
+</p>
+
+- **State-of-the-art Comparison (Few-shot OOD Detection)**
 <p align="center">
   <img src="./figs/t3.png" style="width:95%">
 </p>
 
 ## Visualization
-- Visualization of the cropped regions and calculated weights by CoRA.
+- **Visualization of the cropped regions and calculated weights by CoRA**
 <p align="center">
   <img src="./figs/f3.png" style="width:95%">
-</p>
-
-- CAM visualization.
-<p align="center">
-  <img src="./figs/f4.png" style="width:50%">
 </p>
 
 ## Dependencies
