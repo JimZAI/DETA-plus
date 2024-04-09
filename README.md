@@ -124,6 +124,10 @@ a plugin to improve their performance.
     <p>
         [5] Chen, Pengguang, Shu Liu, and Jiaya Jia; <a href="http://openaccess.thecvf.com/content/CVPR2021/papers/Chen_Jigsaw_Clustering_for_Unsupervised_Visual_Representation_Learning_CVPR_2021_paper.pdf">Jigsaw clustering for unsupervised visual representation learning</a>; CVPR 2020.
     </p>
+      <p>
+    [6] Zhang Ji, Gao Lianli, Luo Xu, Shen Heng Tao and Song Jinagkuan; [DETA: Denoised Task Adaptation for Few-shot Learning](https://openaccess.thecvf.com/content/ICCV2023/html/Zhang_DETA_Denoised_Task_Adaptation_for_Few-Shot_Learning_ICCV_2023_paper.html); ICCV 2023.
+    </p>
+    
 
 </div>
 
