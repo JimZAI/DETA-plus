@@ -95,7 +95,7 @@ a plugin to improve their performance.
 
 
 ## Task Adaptation
-Specify a pretrained model to be adapted, and execute the following command.
+**Specify a pretrained model to be adapted, and execute the following command**.
 * Baseline
     ```
     python main.py --pretrained_model=MOCO --maxIt=40 --ratio=0. --test.type=10shot
@@ -104,7 +104,7 @@ Specify a pretrained model to be adapted, and execute the following command.
     ```
     python main.py --pretrained_model=MOCO --maxIt=40 --ratio=0. --test.type=10shot --ours --n_regions=2
     ```
- Note: set ratio=0. for ID-denoising, set  0. < ratio < 1.0 for OOD-denoising.
+ **Note:** set ratio=0. for ID-denoising, set  0. < ratio < 1.0 for OOD-denoising.
 
 
 ## References
