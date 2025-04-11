@@ -23,7 +23,7 @@ def cross_entropy_loss(logits, targets):
     return loss, stats_dict, pred_dict
 
 
-# NCC
+# clean_loss or LocalNCC
 def clean_loss(
     support_embeddings,
     support_labels,
