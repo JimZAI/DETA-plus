@@ -9,7 +9,7 @@ Recent advances in model pre-training give rise to task adaptation-based few-sho
 ## Motivation
 
 <p align="center">
-  <img src="./figs/f1.png" style="width:50%">
+  <img src="./figures/f1.png" style="width:50%">
 </p>
 
 **Two types of noises that can appear in both the support and query samples of open-world few-shot tasks.** 
@@ -18,7 +18,7 @@ Recent advances in model pre-training give rise to task adaptation-based few-sho
  
 ## Overview
 <p align="center">
-  <img src="./figs/f2.png" style="width:100%">
+  <img src="./figures/f2.png" style="width:100%">
 </p>
 
 **An overview of the proposed Denoised Task Adaptation (DETA++) framework.** 
@@ -37,28 +37,28 @@ a plugin to improve their performance.
 ## Strong Performance and Flexibility
 - **Image-denoising on vanilla Meta-dataset (w/o OOD noises)**
 <p align="center">
-  <img src="./figs/t1.png" style="width:95%">
+  <img src="./figures/t1.png" style="width:95%">
 </p>
 
 - **Label-denoising on OOD-polluted Meta-dataset**
 <p align="center">
-  <img src="./figs/t2.png" style="width:65%">
+  <img src="./figures/t2.png" style="width:65%">
 </p>
 
 - **State-of-the-art Comparison (Few-shot Classification)**
 <p align="center">
-  <img src="./figs/t4.png" style="width:95%">
+  <img src="./figures/t4.png" style="width:95%">
 </p>
 
 - **State-of-the-art Comparison (Few-shot OOD Detection)**
 <p align="center">
-  <img src="./figs/t3.png" style="width:95%">
+  <img src="./figures/t3.png" style="width:95%">
 </p>
 
 ## Visualization
 - **Visualization of the cropped regions and calculated weights by CoRA**
 <p align="center">
-  <img src="./figs/f3.png" style="width:95%">
+  <img src="./figures/f3.png" style="width:95%">
 </p>
 
 ## Dependencies
