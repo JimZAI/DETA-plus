@@ -19,7 +19,7 @@ from tqdm import tqdm
 
 from config import args
 from data.meta_dataset_reader import MetaDatasetEpisodeReader
-from models.losses import prototype_loss
+from models.losses import clean_loss
 
 # stronger models
 from models.ta import ta
@@ -248,7 +248,7 @@ def main():
                         target_images, cur_model, model_name, need_float=False
                     )
 
-                _, (_, stats_dict, _) = prototype_loss(
+                _, (_, stats_dict, _) = clean_loss(
                     context_features,
                     context_labels,
                     target_features,
