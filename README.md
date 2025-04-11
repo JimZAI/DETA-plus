@@ -61,6 +61,13 @@ a plugin to improve their performance.
   <img src="./figures/f3.png" style="width:95%">
 </p>
 
+## DETA++ vs. DETA 
+- **Performance gains of DETA++ and DETA over baseline models**
+<p align="center">
+  <img src="./figures/delta.png" style="width:95%">
+</p>
+
+
 ## Dependencies
 * Python 3.6 or greater
 * PyTorch 1.0 or greater
