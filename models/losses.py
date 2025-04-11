@@ -24,7 +24,7 @@ def cross_entropy_loss(logits, targets):
 
 
 # NCC
-def prototype_loss(
+def clean_loss(
     support_embeddings,
     support_labels,
     query_embeddings,
@@ -58,7 +58,7 @@ def prototype_loss(
         return prots, cross_entropy_loss(logits, query_labels)
 
 
-def prototype_entropy_loss(
+def noise_loss(
     prots,
     query_embeddings,
     distance="cos",
