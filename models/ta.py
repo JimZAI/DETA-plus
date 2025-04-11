@@ -5,7 +5,7 @@ import torch.nn as nn
 from torchvision import transforms
 
 from models.cora import CoRA
-from models.losses import prototype_entropy_loss, prototype_loss
+from models.losses import noise_loss, clean_loss
 from models.memory_bank import BBox, MemoryBank
 from models.tools import generate_embeddings
 
@@ -260,7 +260,7 @@ def ta(
                 patch_weight,
                 torch.tensor(0.0, device=patch_weight.device),
             )
-            prots, (loss_clean, stat, _) = prototype_loss(
+            prots, (loss_clean, stat, _) = clean_loss(
                 context_features,
                 context_labels_for_iter,
                 q_emb,
@@ -268,7 +268,7 @@ def ta(
                 patch_weight=patch_weight,
                 distance=distance,
             )
-            loss_noise = prototype_entropy_loss(
+            loss_noise = noise_loss(
                 prots,
                 q_emb[noise_region_idxs],
                 distance=distance,
@@ -276,7 +276,7 @@ def ta(
 
             loss = balance * loss_noise + loss_clean
         else:
-            loss, stat, _ = prototype_loss(
+            loss, stat, _ = clean_loss(
                 context_features,
                 context_labels,
                 context_features,
