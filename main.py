@@ -218,7 +218,6 @@ def main():
                 ):  # for saving time/memory
                     K_patch = 1
 
-                # TODO: Loss
                 sample_weight, memory_bank = ta(
                     context_images,
                     context_labels,
@@ -233,7 +232,8 @@ def main():
                     K_patch=K_patch,
                     dataset=dataset,
                 )
-
+                
+                # Local NCC
                 with torch.no_grad():
 
                     context_features, context_labels = (
