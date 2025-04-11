@@ -1,9 +1,9 @@
-## DETA++: Denoised Task Adaptation for Open-world Few-shot Learning
+## Reliable Few-shot Learning under Dual Noises
+- Authors: Ji Zhang, Jingkuan Song, Lianli Gao, Nicu Sebe, and Heng Tao Shen
 - A preliminary version of this work has been published in ICCV 2023 ([DETA](https://openaccess.thecvf.com/content/ICCV2023/html/Zhang_DETA_Denoised_Task_Adaptation_for_Few-Shot_Learning_ICCV_2023_paper.html)).
-- The paper is in the peer review stage, and it will be published after its acceptance.
-
+  
 ## Abstract
-Recent advances in model pre-training give rise to task adaptation based few-shot learning (FSL), where the goal is to adapt a pre-trained task-agnostic model for capturing task-specific knowledge with a few-labeled support samples of the target task. Despite the promising results in the closed-world setting, advanced approaches may still fail in the open-world, owing to the inevitable in-distribution (ID) and out-of-distribution (OOD) noises from both support and query samples of the target task. With limited support samples available, i) the adverse effect of the dual noises can be severely amplified during task adaptation, and ii) the adapted model can produce unreliable predictions on query samples in the presence of the dual noises. In this work, we propose **DE**noised **T**ask **A**daptation (**DETA++**) to tackle those challenges. On the one hand, DETA++ leverages a Contrastive Relevance Aggregation (CoRA) module to calculate the weights of images and local regions from support samples, based on which an ID compactness loss and an OOD dispersion loss are developed to achieve noise-robust task adaptation. On the other hand, DETA++ employs a memory bank to store and refine clean regions for each inner-task class, based on which a Local Nearest Centroid Classifier (LocalNCC) is devised to yield noise-robust predictions on query samples. Moreover, DETA++ utilizes an Intra-class Region Swapping (IntraSwap) strategy to rectify the class prototypes of ID classes during task adaptation, further improving the model’s robustness to the dual noises. Through extensive experiments, we prove the effectiveness and flexibility of DETA++, outperforming competitive baselines that specialize in either few-shot classification or OOD detection.
+Recent advances in model pre-training give rise to task adaptation-based few-shot learning (FSL), where the goal is to adapt a pre-trained task-agnostic model for capturing task-specific knowledge with a few-labeled support samples of the target task. Nevertheless, existing approaches may still fail in the open world due to the inevitable in-distribution (ID) and out-of-distribution (OOD) noise from both support and query samples of the target task. With limited support samples available, i) the adverse effect of the dual noises can be severely amplified during task adaptation, and ii) the adapted model can produce unreliable predictions on query samples in the presence of the dual noises. In this work, we propose DEnoised Task Adaptation (DETA++) for reliable FSL. DETA++ uses a Contrastive Relevance Aggregation (CoRA) module to calculate image and region weights for support samples, based on which a clean prototype loss and a noise entropy maximization loss are proposed to achieve noise-robust task adaptation. Additionally, DETA++ employs a memory bank to store and refine clean regions for each inner-task class, based on which a Local Nearest Centroid Classifier (LocalNCC) is devised to yield noise-robust predictions on query samples. Moreover, DETA++ utilizes an Intra-class Region Swapping (IntraSwap) strategy to rectify ID class prototypes during task adaptation, enhancing the model’s robustness to the dual noises. Extensive experiments demonstrate DETA++’s effectiveness and flexibility.
 
 
 ## Motivation
@@ -13,8 +13,8 @@ Recent advances in model pre-training give rise to task adaptation based few-sho
 </p>
 
 **Two types of noises that can appear in both the support and query samples of open-world few-shot tasks.** 
-- **ID Noises**: indistribution (ID) samples whose object features are obscured due to background clutter, image corruption, and etc.
-- **OOD Noises**: out-ofdistribution (OOD) samples, i.e., samples from unseen classes.
+- **ID Noise**: indistribution (ID) samples whose object features are obscured due to background clutter, image corruption, and etc.
+- **OOD Noise**: out-ofdistribution (OOD) samples, i.e., samples from unseen classes.
  
 ## Overview
 <p align="center">
@@ -23,10 +23,10 @@ Recent advances in model pre-training give rise to task adaptation based few-sho
 
 **An overview of the proposed Denoised Task Adaptation (DETA++) framework.** 
 **Firstly**, the images together with a set of randomly cropped local regions of support samples are fed into a pre-trained model (w/ or w/o a model-specific adapter) to extract image and region representations. **Secondly**, a contrastive relevance aggregation (CoRA) module takes the region representations as input to determine the weight of each region, based on which we can compute the image weights and refine the clean regions in a memory bank. 
-**Thirdly**, an ID compactness loss LID and an OOD dispersion loss LOOD are devised in a weighted embedding space to improve the noise-robustness of the adapted model.  **Fourthly**, we employ a memory bank to store clean regions for each class, based on which an Intra-class Region Swapping (IntraSwap) strategy is developed to rectify the class prototypes of ID classes and a Local Nearest Centroid Classifier (LocalNCC) is proposed to yield noise-robust predictions on query samples.
+**Thirdly**, a clean prototype loss and a noise entropy maximization loss are devised in a weighted embedding space to improve the noise-robustness of the adapted model.  **Fourthly**, we employ a memory bank to store clean regions for each class, based on which an Intra-class Region Swapping (IntraSwap) strategy is developed to rectify the class prototypes of ID classes and a Local Nearest Centroid Classifier (LocalNCC) is proposed to yield noise-robust predictions on query samples.
 
 ## Contributions
-- We reveal that the overlooked ID and OOD noises in few-shot tasks negatively affect the task adaptation performance of existing FSL methods. To tackle this, we propose a first, unified, ID- and OOD-denoising
+- We reveal that the overlooked ID and OOD noise in few-shot tasks negatively affect the task adaptation performance of existing FSL methods. To tackle this, we propose a first, unified, ID- and OOD-denoising
 framework DETA++.
 
 - The proposed DETA++ framework is orthogonal to task adaptation based few-shot classification and OOD detection approaches, therefore can be used as
@@ -47,12 +47,12 @@ a plugin to improve their performance.
 
 - **State-of-the-art Comparison (Few-shot Classification)**
 <p align="center">
-  <img src="./figs/t3.png" style="width:95%">
+  <img src="./figs/t4.png" style="width:95%">
 </p>
 
 - **State-of-the-art Comparison (Few-shot OOD Detection)**
 <p align="center">
-  <img src="./figs/t4.png" style="width:95%">
+  <img src="./figs/t3.png" style="width:95%">
 </p>
 
 ## Visualization
@@ -98,11 +98,11 @@ a plugin to improve their performance.
 **Specify a pretrained model to be adapted, and execute the following command**.
 * Baseline
     ```
-    python main.py --pretrained_model=MOCO --maxIt=40 --ratio=0. --test.type=10shot
+    python main.py --pretrained_model=MOCO --maxIt=40 --ratio=0.3 --test.type=10shot
     ```
 * Ours
     ```
-    python main.py --pretrained_model=MOCO --maxIt=40 --ratio=0. --test.type=10shot --ours --n_regions=2
+    python main.py --pretrained_model=MOCO --maxIt=40 --ratio=0.3 --test.type=10shot --ours
     ```
  **Note:** set ratio=0. for ID-denoising, set  0. < ratio < 1.0 for OOD-denoising.
 
